@@ -4,8 +4,7 @@
     <h3>Admin</h3>
     <p><%= link_to 'User count:', users_path %> <%= User.count %></p>
   <% else %>
-    <h3>You've signed up. Download a free book.</h3>
-    <%= link_to 'Download PDF', products_path('product.pdf'), class: 'btn btn-success btn-large' %>
+    <h3>You've signed up. <%= link_to 'Download a free book', thankyou_path %></h3>
   <% end %>
 <% else %>
   <h3>Sign up and download a free book.</h3>

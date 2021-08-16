@@ -15,7 +15,7 @@
        - run: sudo apt-get update
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
-       - run: bundle install
+#       - run: bundle install
        - run: bundle update --bundler
        - run: gem install bundler:1.16.1
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
@@ -43,7 +43,7 @@
        - run: sudo apt-get update
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
-       - run: bundle install
+#       - run: bundle install
        - run: bundle update --bundler
        - run: gem install bundler:1.16.1
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
@@ -73,7 +73,7 @@
        - run: sudo apt-get update
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
-       - run: bundle install
+ #      - run: bundle install
        - run: bundle update --bundler
        - run: gem install bundler:1.16.1
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
@@ -199,25 +199,16 @@
 #          path: coverage
 #          prefix: coverage
     #Deploy job
-#   deploy:
-#     docker:
-#       - image: brianoh1979/bohruby:ruby263
-     #parallelism: 4
+   deploy:
+     docker:
+       - image: 'cimg/ruby:2.7-node'
      #Above runs the tests across four containers instead of one
-#     steps:
-#       - checkout
-#       - run: apt-get update
-#       - run: apt-get install sudo
-#       - run: sudo apt-get update
-#       - restore_cache:
-#          keys:
-#            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-#            - gem-cache-v1-{{ arch }}-{{ .Branch }}
-#            - gem-cache-v1
-#       - run:
-#           name: Deploy Master to Heroku
-#           command: |
-#             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/thawing-cliffs-50633.git master
+     steps:
+       - checkout
+       - run:
+           name: Deploy Master to Heroku
+           command: |
+             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/rails-signup-thankyou-boh.git master
 
  orbs:
    ruby: circleci/ruby@1.1.4
@@ -228,7 +219,10 @@
      jobs:
        - build
        - checking
-       - test:
+ #      - test:
+ #          requires:
+ #            - build
+       - deploy:
            requires:
              - build
  #      - unittest:

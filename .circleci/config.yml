@@ -12,6 +12,7 @@
        - image: 'cimg/ruby:2.7-node'
      steps:
        - checkout
+       - run: sudo apt-get update
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
        - run: bundle install
@@ -39,6 +40,7 @@
        - image: 'cimg/ruby:2.7-node'
      steps:
        - checkout
+       - run: sudo apt-get update
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
        - run: bundle install

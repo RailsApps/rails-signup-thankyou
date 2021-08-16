@@ -1,0 +1,233 @@
+
+# This is my config file for CircleCI - all onboarding objectives present
+# Adding in this line to test Contexts when default security group is removed
+ version: 2.1
+
+ orbs:
+   ruby: circleci/ruby@1.1.4
+   node: circleci/node@4.7.0
+ jobs:
+   build:
+     docker:
+       - image: 'cimg/ruby:2.7-node'
+     steps:
+       - checkout
+       - ruby/install-deps
+       - node/install-packages:
+           cache-key: yarn.lock
+           pkg-manager: yarn
+       # Below step should kick in from second run onwards
+#       - restore_cache:
+#          keys:
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+#            - gem-cache-v1
+#       - run: bundle install     
+#       - save_cache:
+#          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+#          paths:
+#          - vendor/bundle
+
+   checking:
+     docker:
+       - image: 'cimg/ruby:2.7-node'
+     steps:
+       - checkout
+       - ruby/install-deps
+       - ruby/rubocop-check:
+           format: progress
+           label: Inspecting with Rubocop
+   
+   test:
+     docker:
+       - image: 'cimg/ruby:2.7-node'
+       - environment:
+           POSTGRES_DB: rails_blog_test
+           POSTGRES_PASSWORD: ''
+           POSTGRES_USER: circleci-demo-ruby
+         image: 'circleci/postgres:9.5-alpine'
+     environment:
+       BUNDLE_JOBS: '3'
+       BUNDLE_RETRY: '3'
+       PGHOST: 127.0.0.1
+       PGPASSWORD: ''
+       PGUSER: circleci-demo-ruby
+       RAILS_ENV: test
+     parallelism: 3
+     steps:
+       - checkout
+       - ruby/install-deps
+       - node/install-packages:
+           cache-key: yarn.lock
+           pkg-manager: yarn
+       - run:
+           command: 'dockerize -wait tcp://localhost:5432 -timeout 1m'
+           name: Wait for DB
+       - run:
+           command: 'bundle exec rails db:schema:load --trace'
+           name: Database setup
+       - ruby/rspec-test
+   #Start of the Unit Testing section
+#   unittest:
+#     docker:
+#       - image: brianoh1979/bohruby:ruby263
+#     parallelism: 4
+#     #Above runs the tests across four containers instead of one
+#     steps:
+#       - checkout
+#       - run: apt-get update
+#       - run: sudo apt-get update
+#       - run: sudo apt-get install -y nodejs
+#       - run: sudo apt-get install -y tzdata
+#       - restore_cache:
+#          keys:
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+#            - gem-cache-v1
+#       - run: gem install bundler:2.0.1
+#       - run: bundle update --bundler
+#       - run: rake db:test:prepare 
+#       - run:
+#           command: |
+#             echo $(circleci tests glob "spec/features/models/*.rb") 
+#             circleci tests glob "spec/features/models/*.rb" | xargs -n 1 echo           
+#       - run: TESTFILES=$(circleci tests glob "spec/features/models/*.rb" | circleci tests split --split-by=filesize)
+#       - run: echo $TESTFILES
+#       - run: bundle exec rspec -- ${TESTFILES}
+   #Start of Browser testing
+#   browsertest:
+#     docker:
+#       - image: brianoh1979/bohruby:ruby263  
+     #Above runs the tests across four containers instead of one
+#     steps:
+#       - checkout
+#       - run: apt-get update
+#       - run: sudo apt-get update
+#       - run: sudo apt-get upgrade -y  
+#       - run: sudo apt-get install apt-transport-https
+#       - restore_cache:
+#          keys:
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+#            - gem-cache-v1
+#       - run: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+#       - run: sudo apt-get install -y nodejs
+#       - run: sudo apt-get install -y tzdata
+#       - run:
+#          name: Install Cypress dependencies
+#          command: sudo apt-get -y install xvfb libgtk-3-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 --fix-missing
+#       - run:
+#          name: install cypress
+#          command: npm install cypress --save-dev
+#       - run: gem install bundler:2.0.1
+#       - run: bundle update --bundler
+#       - run:
+#           name: Boot rails server
+#           command: bin/rails s
+#           background: true
+#       - run: mkdir /tmp/results
+#       - run: npm install --save-dev mocha mochawesome mochawesome-merge mochawesome-report-generator
+#       - run: # open cypress and use sample_spec.js
+#          name: run
+#          command: $(npm bin)/cypress run -- --record --spec "cypress/integration/sample_spec.js" --reporter junit \ --reporter-options "mochaFile=XML/my-test-output.xml,toConsole=true"
+  #        command: $(npm bin)/cypress run -- --record --spec "cypress/integration/sample_spec.js" 
+#       - store_test_results:
+#           path: /tmp/results
+#       - store_artifacts:
+#           path: /tmp/results
+#           destination: results
+  #     - store_artifacts: # for display in Artifacts: https://circleci.com/docs$
+  #        path: /XML
+   #Linters and static code analysis
+#   lintertest:
+#     docker:
+#       - image: brianoh1979/bohruby:ruby263
+#     steps:
+#       - checkout
+#       - run: apt-get update
+#       - run: sudo apt-get update
+#       - restore_cache:
+#          keys:
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+#            - gem-cache-v1
+ #      - run: gem install bundler:2.0.1
+#       - run: bundle update --bundler
+#       - run: bundle-audit check --ignore CVE-2015-7580 CVE-2015-7578 CVE-2015-7579
+#       - run: rails_best_practices .
+   #Code Coverage
+#   codecoveragetest:
+#     docker:
+#       - image: brianoh1979/bohruby:ruby263
+#     steps:
+#       - checkout
+#       - run: apt-get update
+#       - run: sudo apt-get update
+#       - run: sudo apt-get install -y nodejs
+#       - run: sudo apt-get install -y tzdata
+#       - restore_cache:
+#          keys:
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+#            - gem-cache-v1
+ #      - run: gem install bundler:2.0.1
+#       - run: bundle update --bundler
+#       - run: rake db:test:prepare
+#       - run: rails test
+#       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
+#          path: coverage
+#          prefix: coverage
+    #Deploy job
+#   deploy:
+#     docker:
+#       - image: brianoh1979/bohruby:ruby263
+     #parallelism: 4
+     #Above runs the tests across four containers instead of one
+#     steps:
+#       - checkout
+#       - run: apt-get update
+#       - run: apt-get install sudo
+#       - run: sudo apt-get update
+#       - restore_cache:
+#          keys:
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+#            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+#            - gem-cache-v1
+#       - run:
+#           name: Deploy Master to Heroku
+#           command: |
+#             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/thawing-cliffs-50633.git master
+
+
+ version: 2.1
+ workflows:
+   build_and_test:
+     jobs:
+       - build
+       - checking
+       - test:
+           requires:
+             - build
+ #      - unittest:
+ #          requires:
+ #            - build
+ #      - browsertest:
+ #          requires:
+ #            - build
+ #      - lintertest:
+ #          requires:
+ #            - build
+ #      - codecoveragetest:
+ #          requires:
+ #            - build
+ #      - deploy:
+ #          requires:
+ #            - unittest
+ #            - browsertest
+ #            - lintertest
+ #            - codecoveragetest
+ #          filters:
+ #            branches:
+ #              only: master
+
+         

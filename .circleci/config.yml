@@ -12,9 +12,9 @@
        - image: 'cimg/ruby:2.7-node'
      steps:
        - checkout
-#       - run: bundle update --bundler
-#       - run: gem install bundler:1.16.1
-#       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
+       - run: bundle update --bundler
+       - run: gem install bundler:1.16.1
+       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
        - ruby/install-deps
        - node/install-packages:
            cache-path: ~/project/node_modules
@@ -36,9 +36,9 @@
        - image: 'cimg/ruby:2.7-node'
      steps:
        - checkout
- #      - run: bundle update --bundler
- #      - run: gem install bundler:1.16.1
- #      - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
+       - run: bundle update --bundler
+       - run: gem install bundler:1.16.1
+       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
        - ruby/install-deps
        - ruby/rubocop-check:
            format: progress

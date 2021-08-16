@@ -12,6 +12,7 @@
        - image: 'cimg/ruby:2.7-node'
      steps:
        - checkout
+       - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
        - run: bundle install
        - run: bundle update --bundler
        - run: gem install bundler:1.16.1
@@ -37,6 +38,7 @@
        - image: 'cimg/ruby:2.7-node'
      steps:
        - checkout
+       - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
        - run: bundle install
        - run: bundle update --bundler
        - run: gem install bundler:1.16.1

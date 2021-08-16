@@ -14,8 +14,8 @@
        - checkout
        - ruby/install-deps
        - node/install-packages:
-           cache-key: yarn.lock
-           pkg-manager: yarn
+           cache-path: ~/project/node_modules
+           override-ci-command: npm install
        # Below step should kick in from second run onwards
 #       - restore_cache:
 #          keys:

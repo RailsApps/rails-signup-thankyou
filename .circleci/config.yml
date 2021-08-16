@@ -1,11 +1,11 @@
 
 # This is my config file for CircleCI - all onboarding objectives present
 # Adding in this line to test Contexts when default security group is removed
- version: 2.1
+# version: 2.1
 
- orbs:
-   ruby: circleci/ruby@1.1.4
-   node: circleci/node@4.7.0
+# orbs:
+#   ruby: circleci/ruby@1.1.4
+#   node: circleci/node@4.7.0
  jobs:
    build:
      docker:
@@ -198,8 +198,10 @@
 #           command: |
 #             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/thawing-cliffs-50633.git master
 
-
-# version: 2.1
+ orbs:
+   ruby: circleci/ruby@1.1.4
+   node: circleci/node@4.7.0
+ version: 2.1
  workflows:
    build_and_test:
      jobs:

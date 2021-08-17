@@ -192,7 +192,6 @@
 #       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
 #          path: coverage
 #          prefix: coverage
-    #Deploy job
    deploy:
      docker:
        - image: 'cimg/ruby:2.7-node'

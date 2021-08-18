@@ -47,7 +47,6 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    ast (2.4.2)
     autoprefixer-rails (10.3.1.0)
       execjs (~> 2)
     bcrypt (3.1.16)
@@ -56,6 +55,8 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.8.1)
+    bootsnap (1.7.7)
+      msgpack (~> 1.0)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -89,7 +90,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    diff-lcs (1.4.4)
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.3)
@@ -119,15 +119,12 @@ GEM
     mini_mime (1.1.0)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
+    msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.3)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    parallel (1.20.1)
-    parser (3.0.2.0)
-      ast (~> 2.4.1)
-    pg (1.2.3)
     public_suffix (4.0.6)
     puma (3.12.6)
     racc (1.5.2)
@@ -159,7 +156,6 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
-    rainbow (3.0.0)
     rake (13.0.6)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
@@ -168,34 +164,6 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rexml (3.2.5)
-    rspec (3.10.0)
-      rspec-core (~> 3.10.0)
-      rspec-expectations (~> 3.10.0)
-      rspec-mocks (~> 3.10.0)
-    rspec-core (3.10.1)
-      rspec-support (~> 3.10.0)
-    rspec-expectations (3.10.1)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.10.0)
-    rspec-mocks (3.10.2)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.10.0)
-    rspec-support (3.10.2)
-    rspec_junit_formatter (0.4.1)
-      rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.19.0)
-      parallel (~> 1.10)
-      parser (>= 3.0.0.0)
-      rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8, < 3.0)
-      rexml
-      rubocop-ast (>= 1.9.1, < 2.0)
-      ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.10.0)
-      parser (>= 3.0.1.1)
-    ruby-progressbar (1.11.0)
     ruby_dep (1.5.0)
     rubyzip (2.3.2)
     sass (3.7.4)
@@ -211,12 +179,6 @@ GEM
       tilt (>= 1.1, < 3)
     sassc (2.4.0)
       ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -227,6 +189,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -234,7 +197,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (2.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
@@ -253,6 +215,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  bootsnap (>= 1.1.0)
   bootstrap-sass
   byebug
   capybara (>= 2.15, < 4.0)
@@ -263,22 +226,18 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
-  pg
-  puma
+  puma (~> 3.11)
   rails (~> 5.2.0)
   rails_layout
-  rspec (~> 3.6)
-  rspec_junit_formatter (= 0.4.1)
-  rubocop
-  sass-rails
-  sassc-rails
+  sass-rails (~> 5.0)
   selenium-webdriver
+  sqlite3
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 2.5.1p57
 
 BUNDLED WITH
    2.1.4

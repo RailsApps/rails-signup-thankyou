@@ -1,11 +1,6 @@
 
 # This is my config file for CircleCI - all onboarding objectives present
 # Adding in this line to test Contexts when default security group is removed
-# version: 2.1
-
-# orbs:
-#   ruby: circleci/ruby@1.1.4
-#   node: circleci/node@4.7.0
  jobs:
    build:
      docker:
@@ -20,17 +15,6 @@
 #       - node/install-packages:
 #           cache-path: ~/project/node_modules
 #           override-ci-command: npm install
-       # Below step should kick in from second run onwards
-#       - restore_cache:
-#          keys:
-#            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-#            - gem-cache-v1-{{ arch }}-{{ .Branch }}
-#            - gem-cache-v1
-#       - run: bundle install     
-#       - save_cache:
-#          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-#          paths:
-#          - vendor/bundle
 
    checking:
      docker:
@@ -107,7 +91,7 @@
    build_and_test:
      jobs:
        - build
-       - checking
+ #      - checking
  #      - test:
  #          requires:
  #            - build

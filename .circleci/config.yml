@@ -85,7 +85,7 @@
 
  orbs:
    ruby: circleci/ruby@1.1.4
-   node: circleci/node@4.7.0
+   node: circleci/node@2
  version: 2.1
  workflows:
    build_and_test:

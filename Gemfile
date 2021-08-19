@@ -30,3 +30,5 @@ group :development do
   gem 'better_errors'
   gem 'rails_layout'
 end
+
+gem "pg", "~> 1.2"

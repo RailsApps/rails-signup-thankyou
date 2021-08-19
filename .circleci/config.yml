@@ -55,6 +55,7 @@
        - run: bundle update --bundler
        - run: gem install bundler:1.16.1
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
+       - run: rake db:create && rake db:migrate
        - ruby/install-deps
        - node/install-packages:
            pkg-manager: yarn

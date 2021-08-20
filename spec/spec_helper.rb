@@ -19,7 +19,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-require 'warden/test/controller_helpers' 
 RSpec.configure do |config|
   config.include Warden::Test::ControllerHelpers, type: :controller
   # rspec-expectations config goes here. You can use an alternate

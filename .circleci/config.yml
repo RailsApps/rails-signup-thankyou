@@ -60,7 +60,7 @@
        - node/install-packages:
            pkg-manager: yarn
            cache-key: "yarn.lock"
-       - run: rake db:create && rake db:migrate
+       - run: bundle exec rake db:create && rake db:migrate
        - run:
            command: 'dockerize -wait tcp://localhost:5432 -timeout 1m'
            name: Wait for DB

@@ -51,6 +51,7 @@
        - run: sudo apt-get update
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
+       - run: gem install rake
 #       - run: bundle install
 #       - run: bundle update --bundler
 #       - run: gem install bundler:1.16.1

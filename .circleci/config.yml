@@ -78,14 +78,14 @@
        - run: sudo apt-get update
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
-       - run: bundle update railties
+ #      - run: bundle update railties
        - run: bundle install
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
        - ruby/install-deps
        - run:
            name: Deploy Master to Heroku
            command: |
-             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/rails-demo-brianoh.git master
+             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/rails-signup-thankyou-boh.git master
 
  orbs:
    ruby: circleci/ruby@1.1.4
@@ -116,7 +116,7 @@
  #            - build
        - deploy:
            requires:
-             - build
+             - test
  #            - browsertest
  #            - lintertest
  #            - codecoveragetest

@@ -78,6 +78,7 @@
        - run: sudo apt-get update
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
+       - run: bundle update railties
        - run: bundle install
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
        - ruby/install-deps

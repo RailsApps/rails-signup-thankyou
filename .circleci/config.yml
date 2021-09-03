@@ -113,9 +113,9 @@
  #      - codecoveragetest:
  #          requires:
  #            - build
- #      - deploy:
- #          requires:
- #            - unittest
+       - deploy:
+           requires:
+             - build
  #            - browsertest
  #            - lintertest
  #            - codecoveragetest

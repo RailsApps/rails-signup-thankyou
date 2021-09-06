@@ -12,6 +12,8 @@
        - node/install-packages:
            pkg-manager: yarn
            cache-key: "yarn.lock"
+           start: bin/rails server
+           wait-on: 'http://localhost:3000'
 
    browsertest:
      docker:

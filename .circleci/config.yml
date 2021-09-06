@@ -87,6 +87,7 @@
        - run: bundle install
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
        - ruby/install-deps
+       - run: bin/rails db:migrate RAILS_ENV=development
        - run:
            name: Deploy Master to Heroku
            command: |

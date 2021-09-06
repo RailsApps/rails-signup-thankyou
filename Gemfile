@@ -2,10 +2,9 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.4'
 gem 'rails', '~> 5.2.0'
-#gem 'sqlite3'
 gem 'puma', '~> 3.11'
-#gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'rspec'
+gem 'rubocop', require: false
 gem 'rake'
 #gem 'rspec-rails'
 gem 'rspec_junit_formatter'
@@ -36,12 +35,4 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'high_voltage'
 gem 'jquery-rails'
-#group :development, :test do
-#  gem 'better_errors'
-#  gem 'rails_layout'
-#  gem 'byebug',  '9.0.6', platform: :mri
-#  gem 'sqlite3', '1.3.13'
-#  gem 'rspec-rails', '~> 3.8'
-#end
-
 gem "pg", "~> 1.2"

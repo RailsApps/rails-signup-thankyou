@@ -85,7 +85,7 @@
        - run:
            name: Deploy Master to Heroku
            command: |
-             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/rails-signup-thankyou-boh.git master
+             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/rails-signup-thankyou-boh.git develop
 
  orbs:
    ruby: circleci/ruby@1.1.4

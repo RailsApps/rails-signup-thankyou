@@ -1,0 +1,11 @@
+{
+  "integrationFolder": "cypress/integration",
+  "pluginsFile": false,
+  "supportFile": false,
+  "pageLoadTimeout": 180000,
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "/tmp/results/my-test-output-[hash].xml",
+    "toConsole": true
+  }
+}

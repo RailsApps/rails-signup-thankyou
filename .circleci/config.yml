@@ -12,8 +12,6 @@
        - node/install-packages:
            pkg-manager: yarn
            cache-key: "yarn.lock"
-           start: bin/rails server
-           wait-on: 'http://localhost:3000'
 
    browsertest:
      docker:
@@ -95,6 +93,8 @@
        - cypress/run:
            yarn: true
            cache-key: 'yarn-packages-{{ arch }}-{{ checksum "yarn.lock" }}'
+           start: bin/rails server
+           wait-on: 'http://localhost:3000'
  #      - deploy:
  #          requires:
  #            - test

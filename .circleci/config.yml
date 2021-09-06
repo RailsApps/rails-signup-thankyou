@@ -81,7 +81,7 @@
  orbs:
    ruby: circleci/ruby@1.1.4
    node: circleci/node@2
-   cypress: cypress-io/cypress@1.1.0
+   cypress: cypress-io/cypress@1.29.0
  version: 2.1
  workflows:
    build_and_test:

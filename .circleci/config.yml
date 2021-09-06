@@ -52,11 +52,7 @@
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
        - run: gem install rake
-#       - run: bundle install
-#       - run: bundle update --bundler
-#       - run: gem install bundler:1.16.1
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
-#       - run: rake db:create && rake db:migrate
        - ruby/install-deps
        - node/install-packages:
            pkg-manager: yarn

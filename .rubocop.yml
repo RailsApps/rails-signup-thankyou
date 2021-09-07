@@ -19,5 +19,5 @@ Metrics/LineLength:
 FrozenStringLiteralComment:
   Enabled: false
 
-#StringLiterals:
-#  Enabled: false
+StringLiterals:
+  Enabled: false

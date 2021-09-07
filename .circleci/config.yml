@@ -59,7 +59,7 @@
            command: 'bundle exec rails db:schema:load --trace'
            name: Database setup
        - ruby/rspec-test
-       - ruby/rubocop-check
+#       - ruby/rubocop-check
 
 
    deploy:

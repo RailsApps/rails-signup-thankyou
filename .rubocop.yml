@@ -1,0 +1,23 @@
+###
+# Configuration for rubocop
+# in .rubocop.yml 
+# Most of these are disabling existing cops, primarily
+# due to a smattering of different styles and loose
+# guidlines for contributions.
+#
+# Any of these may be changed.
+
+AllCops:
+  Exclude:
+    - 'spec/**/*'
+    - 'vendor/**/*'
+  TargetRubyVersion: 2.6.3
+
+Metrics/LineLength:
+  Max: 120
+
+FrozenStringLiteralComment:
+  Enabled: false
+
+#StringLiterals:
+#  Enabled: false

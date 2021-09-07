@@ -8,10 +8,14 @@
 # Any of these may be changed.
 
 AllCops:
+  NewCops: enable
   Exclude:
     - 'spec/**/*'
     - 'vendor/**/*'
-  TargetRubyVersion: 2.6.3
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'app/**/*'
+  TargetRubyVersion: 2.7.4
 
 Metrics/LineLength:
   Max: 120

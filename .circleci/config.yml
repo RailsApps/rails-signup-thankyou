@@ -67,8 +67,6 @@
        - image: 'cimg/ruby:2.7-node'
      steps:
        - checkout
-       - heroku/install
-       - heroku/deploy-via-git
        - run: sudo apt-get update
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'

@@ -64,24 +64,27 @@
 
    deploy:
      docker:
-       - image: 'cimg/ruby:2.7-node'
+       - image: heroku/default
      steps:
        - checkout
-       - run: sudo apt-get update
-       - run: sudo apt-get install libsqlite3-dev
-       - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
-       - run: bundle install
-       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
-       - ruby/install-deps
-       - run:
-           name: Deploy Master to Heroku
-           command: |
-             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/rails-signup-thankyou-boh.git develop
+       - heroku/install
+       - heroku/deploy-via-git
+           app-name: rails-signup-thankyou-boh
+ #      - run: sudo apt-get update
+ #      - run: sudo apt-get install libsqlite3-dev
+ #      - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
+ #      - run: bundle install
+ #      - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
+ #      - ruby/install-deps
+ #      - run:
+ #          name: Deploy Master to Heroku
+ #          command: |
+ #            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/rails-signup-thankyou-boh.git develop
 
  orbs:
    ruby: circleci/ruby@1.1.4
    node: circleci/node@2
-   cypress: cypress-io/cypress@1.29.0
+   heroku: circleci/heroku@1.2.6
  version: 2.1
  workflows:
    build_and_test:
@@ -90,17 +93,9 @@
        - test:
            requires:
              - build
-       - cypress/run:
+       - deploy:
            requires:
-             - build
-           executor: circleci/ruby:2.6.3-node-browsers
-           yarn: true
-           cache-key: 'yarn-packages-{{ arch }}-{{ checksum "yarn.lock" }}'
-           start: bin/rails server
-           wait-on: 'http://localhost:3000'
- #      - deploy:
- #          requires:
- #            - test
+             - test
  #            - browsertest
  #            - lintertest
  #            - codecoveragetest

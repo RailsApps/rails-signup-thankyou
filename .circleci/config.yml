@@ -65,19 +65,18 @@
    deploy:
      docker:
        - image: 'cimg/ruby:2.7-node'
-         auth:
-          username: $DOCKERHUB_USER
-          password: $DOCKERHUB_PASSWORD
      steps:
        - checkout
        - heroku/install
        - heroku/deploy-via-git
- #      - run: sudo apt-get update
- #      - run: sudo apt-get install libsqlite3-dev
- #      - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
- #      - run: bundle install
- #      - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
- #      - ruby/install-deps
+       - run: sudo apt-get update
+       - run: sudo apt-get install libsqlite3-dev
+       - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
+       - run: bundle install
+       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
+       - ruby/install-deps
+       - heroku/install
+       - heroku/deploy-via-git
  #      - run:
  #          name: Deploy Master to Heroku
  #          command: |

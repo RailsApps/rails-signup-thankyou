@@ -91,6 +91,9 @@
            requires:
              - build
        - cypress/run:
+           requires:
+             - build
+           executor: circleci/ruby:2.6.3-node-browsers
            yarn: true
            cache-key: 'yarn-packages-{{ arch }}-{{ checksum "yarn.lock" }}'
            start: bin/rails server

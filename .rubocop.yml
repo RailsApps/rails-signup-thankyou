@@ -15,6 +15,7 @@ AllCops:
     - 'config/**/*'
     - 'bin/**/*'
     - 'app/**/*'
+    - 'db/**/*'
   TargetRubyVersion: 2.7.4
 
 Metrics/LineLength:

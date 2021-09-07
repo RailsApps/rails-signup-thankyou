@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -39,7 +41,7 @@ Rails.application.configure do
   config.active_support.deprecation = :log
 
   # Raise an error on page load if there are pending migrations.
-  config.active_record.migration_error = false#:page_load
+  config.active_record.migration_error = false # :page_load
 
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
@@ -57,5 +59,5 @@ Rails.application.configure do
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-#  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  #  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end

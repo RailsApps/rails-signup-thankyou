@@ -69,7 +69,6 @@
        - checkout
        - heroku/install
        - heroku/deploy-via-git
-           app-name: rails-signup-thankyou-boh
  #      - run: sudo apt-get update
  #      - run: sudo apt-get install libsqlite3-dev
  #      - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'

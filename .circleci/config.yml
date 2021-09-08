@@ -98,6 +98,7 @@
    ruby: circleci/ruby@1.1.4
    node: circleci/node@2
    heroku: circleci/heroku@1.2.6
+   cypress: cypress-io/cypress@1.29.0
  version: 2.1
  workflows:
    build_and_test:
@@ -109,6 +110,13 @@
        - browsertest:
            requires:
              - build
+       - cypress/run:
+           build: bundle install
+           yarn: false
+           executor: 'cimg/ruby:2.7-node' 
+           start: cd ~/project && rails server
+           cache-key: 'yarn.lock'
+           wait-on: http://localhost:3000
        - deploy:
            requires:
              - test

@@ -35,7 +35,7 @@
     "debug" "^3.1.0"
     "lodash.once" "^4.1.1"
 
-"@types/node@*", "@types/node@^14.14.31":
+"@types/node@^14.14.31":
   "integrity" "sha512-D1sdW0EcSCmNdLKBGMYb38YsHUS6JcM7yQ6sLQ9KuZ35ck7LYCKE7kYFHOO59ayFOY3zobWVZxf4KXhYHcHYFA=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-14.17.15.tgz"
   "version" "14.17.15"
@@ -49,13 +49,6 @@
   "integrity" "sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ=="
   "resolved" "https://registry.npmjs.org/@types/sizzle/-/sizzle-2.3.3.tgz"
   "version" "2.3.3"
-
-"@types/yauzl@^2.9.1":
-  "integrity" "sha512-8uALY5LTvSuHgloDVUvWP3pIauILm+8/0pDMokuDYIoNsOkSwd5AiHBTSEJjKTDcZr5z8UpgOWZkxBF4iJftoA=="
-  "resolved" "https://registry.npmjs.org/@types/yauzl/-/yauzl-2.9.2.tgz"
-  "version" "2.9.2"
-  dependencies:
-    "@types/node" "*"
 
 "aggregate-error@^3.0.0":
   "integrity" "sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA=="
@@ -259,11 +252,6 @@
 "colorette@^1.2.2":
   "integrity" "sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g=="
   "resolved" "https://registry.npmjs.org/colorette/-/colorette-1.4.0.tgz"
-  "version" "1.4.0"
-
-"colors@^1.1.2":
-  "integrity" "sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA=="
-  "resolved" "https://registry.npmjs.org/colors/-/colors-1.4.0.tgz"
   "version" "1.4.0"
 
 "combined-stream@^1.0.6", "combined-stream@~1.0.6":

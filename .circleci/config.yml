@@ -114,8 +114,6 @@
        - browsertest:
            requires:
              - build
-       - cypress/install
-           executor: ruby
        - cypress/run:
            build: bundle install
            executor: ruby 

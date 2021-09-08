@@ -119,7 +119,7 @@
            executor: ruby 
            start: cd ~/project && rails server
            wait-on: http://localhost:3000
-           install-command: 'npm install --no-optional --unsafe-perm'
+           install-command: 'npm install xvfb'
        - deploy:
            requires:
              - test

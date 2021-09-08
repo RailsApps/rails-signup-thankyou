@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "bootstrap": "~>4.3.1",
-    "cypress": "^8.3.1"
+    "cypress": "^8.3.1",
+    "xvfb": "^0.4.0"
   },
   "version": "1.0.0",
   "repository": "git@github.com:CircleCI-Public/circleci-demo-ruby-rails.git",

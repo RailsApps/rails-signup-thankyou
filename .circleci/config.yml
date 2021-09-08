@@ -113,7 +113,7 @@
        - cypress/run:
            build: bundle install
            yarn: false
-           executor: 'cimg/ruby:2.7-node' 
+           executor: ruby 
            start: cd ~/project && rails server
            cache-key: 'yarn.lock'
            wait-on: http://localhost:3000

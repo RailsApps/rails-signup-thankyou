@@ -22,7 +22,28 @@
        - run: sudo apt-get install libsqlite3-dev
        - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
-       - ruby/install-deps
+       - run:
+          name: Install Cypress dependencies
+          command: sudo apt-get install xvfb libgtk-3-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 --fix-missing
+       - run:
+          name: install cypress
+          command: npm install cypress --save-dev
+       - run: gem install bundler:2.0.1
+       - run: bundle update --bundler
+       - run:
+           name: Boot rails server
+           command: bin/rails s
+           background: true
+       - run: mkdir /tmp/results
+       - run: npm install --save-dev mocha mochawesome mochawesome-merge mochawesome-report-generator
+       - run: # open cypress and use sample_spec.js
+          name: run
+          command: $(npm bin)/cypress run -- --record --spec "cypress/integration/sample_spec.js"
+       - store_test_results:
+           path: /tmp/results
+       - store_artifacts:
+           path: /tmp/results
+           destination: results
    
    test:
      docker:
@@ -68,17 +89,10 @@
      steps:
        - checkout
        - run: sudo apt-get update
-#       - run: sudo apt-get install libsqlite3-dev
-#       - run: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
-#       - run: bundle install
        - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
        - ruby/install-deps
        - heroku/install
        - heroku/deploy-via-git
-#       - run:
-#           name: Deploy Master to Heroku
-#           command: |
-#             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/rails-signup-thankyou-boh.git develop
 
  orbs:
    ruby: circleci/ruby@1.1.4
@@ -92,14 +106,12 @@
        - test:
            requires:
              - build
+       - browsertest:
+           requires:
+             - build
        - deploy:
            requires:
              - test
- #            - browsertest
- #            - lintertest
- #            - codecoveragetest
- #          filters:
- #            branches:
- #              only: master
+             - browsertest
 
          

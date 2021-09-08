@@ -102,7 +102,7 @@
  executors:
    ruby:
      docker:
-       - image: 'lcxat/cypress-ruby:latest'
+       - image: 'cimg/ruby:2.7-node'
  version: 2.1
  workflows:
    build_and_test:
@@ -114,6 +114,8 @@
        - browsertest:
            requires:
              - build
+       - cypress/install
+           executor: ruby
        - cypress/run:
            build: bundle install
            executor: ruby 

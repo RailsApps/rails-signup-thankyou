@@ -99,6 +99,10 @@
    node: circleci/node@2
    heroku: circleci/heroku@1.2.6
    cypress: cypress-io/cypress@1.29.0
+ executors:
+   ruby:
+     docker:
+       - image: 'cimg/ruby:2.7-node'
  version: 2.1
  workflows:
    build_and_test:
@@ -112,7 +116,7 @@
              - build
        - cypress/run:
            build: bundle install
-           executor: ruby:2.5 
+           executor: ruby 
            start: cd ~/project && rails server
            wait-on: http://localhost:3000
        - deploy:

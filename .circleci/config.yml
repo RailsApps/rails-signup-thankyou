@@ -76,7 +76,7 @@
            requires:
              - build
        - cypress/run:
-           build: gem install rails
+           build: gem install rails && gem install bootsnap
            executor: ruby 
            start: cd ~/project && rails server
            wait-on: http://localhost:3000

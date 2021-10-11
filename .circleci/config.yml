@@ -75,6 +75,8 @@
        - test:
            requires:
              - build
+       - cypress/install
+           cache-key: 'cache2-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}'
        - cypress/run:
            build: bundle install 
            executor: ruby 
@@ -84,7 +86,8 @@
            verify-command: 'sudo apt-get install xvfb libgtk-3-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 --fix-missing'
            cache-key: 'cache2-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}'
            requires:
-             - build
+             - cypress/install
+           attach-workspace: yes
        - hold:
           type: approval
           requires:

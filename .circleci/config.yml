@@ -82,7 +82,7 @@
            wait-on: http://localhost:3000
            install-command: 'sudo apt-get update'
            verify-command: 'sudo apt-get install xvfb libgtk-3-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 --fix-missing'
-           post-install: [run: sudo apt-get install xvfb]
+           post-install: [run: cypress install]
            requires:
              - build
        - hold:

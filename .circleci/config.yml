@@ -85,6 +85,7 @@
            verify-command: 'sudo apt-get install xvfb libgtk-3-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 --fix-missing'
            requires:
              - cypress/install
+           attach-workspace: true
        - hold:
           type: approval
           requires:

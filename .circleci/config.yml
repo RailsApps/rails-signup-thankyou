@@ -75,7 +75,7 @@
        - test:
            requires:
              - build
-       - cypress/install
+       - cypress/install:
            cache-key: 'cache2-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}'
        - cypress/run:
            build: bundle install 

@@ -66,7 +66,7 @@
  executors:
    ruby:
      docker:
-       - image: 'cimg/ruby:2.7.2-node'
+       - image: 'cimg/ruby:2.7.4-node'
  version: 2.1
  workflows:
    build_and_test:

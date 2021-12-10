@@ -49,7 +49,7 @@ jobs:
       PGPASSWORD: ''
       PGUSER: circleci-demo-ruby
       RAILS_ENV: test
-     parallelism: 3
+    parallelism: 3
     steps:
       - checkout
       - run: sudo apt-get update

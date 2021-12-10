@@ -5,16 +5,16 @@ setup: << pipeline.parameters.run-setup >>
 orbs:
   path-filtering: circleci/path-filtering@0.1.1
 
- parameters:
-   run-setup:
-     type: boolean
-     default: true
-   run-module-a:
-     type: boolean
-     default: false
-   run-module-b:
-     type: boolean
-     default: false
+parameters:
+  run-setup:
+    type: boolean
+    default: true
+  run-module-a:
+    type: boolean
+    default: false
+  run-module-b:
+    type: boolean
+    default: false
 
  jobs:
    module-a:
@@ -25,7 +25,6 @@ orbs:
        - run: "echo 'Hello from module A!'"
        - run: cat module-a/README.md
 
- jobs:
    build:
      docker:
        - image: 'cimg/ruby:2.7-node'

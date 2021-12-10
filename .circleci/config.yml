@@ -90,7 +90,7 @@ orbs:
 executors:
   ruby:
     docker:
-      - image: 'cimg/ruby:2.7.4-node'
+      - image: 'cimg/ruby:2.7-node'
 
 workflows:
   pre:

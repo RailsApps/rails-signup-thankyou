@@ -2,9 +2,6 @@ version: 2.1
 
 setup: << pipeline.parameters.run-setup >>
 
-orbs:
-  path-filtering: circleci/path-filtering@0.1.1
-
 parameters:
   run-setup:
     type: boolean
@@ -85,6 +82,7 @@ parameters:
        - heroku/deploy-via-git
 
  orbs:
+   path-filtering: circleci/path-filtering@0.1.1
    ruby: circleci/ruby@1.1.4
    node: circleci/node@2
    heroku: circleci/heroku@1.2.6

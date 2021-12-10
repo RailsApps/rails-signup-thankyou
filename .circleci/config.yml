@@ -139,6 +139,6 @@ workflows:
           filters:
              branches:
                only:
-                 - rubocop  
+                 - main  
 
          

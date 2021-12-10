@@ -1,3 +1,30 @@
+version: 2.1
+
+setup: << pipeline.parameters.run-setup >>
+
+orbs:
+  path-filtering: circleci/path-filtering@0.1.1
+
+ parameters:
+   run-setup:
+     type: boolean
+     default: true
+   run-module-a:
+     type: boolean
+     default: false
+   run-module-b:
+     type: boolean
+     default: false
+
+ jobs:
+   module-a:
+     docker:
+       - image: alpine
+     steps:
+       - checkout
+       - run: "echo 'Hello from module A!'"
+       - run: cat module-a/README.md
+
  jobs:
    build:
      docker:
@@ -67,9 +94,27 @@
    ruby:
      docker:
        - image: 'cimg/ruby:2.7.4-node'
- version: 2.1
+
  workflows:
+   pre:
+     when: << pipeline.parameters.run-setup >>
+     jobs:
+       - path-filtering/filter:
+           # Compare files on main
+           base-revision: main
+           # Config for continuation; herein we reuse this config itself
+           config-path: .circleci/config.yml
+           # 3-column space-separated table for mapping; `path-to-test parameter-to-set value-for-parameter` for each row
+           mapping: |
+             .* run-setup false
+             module-a/.* run-module-a true
+             module-b/.* run-module-b true
+   module-a:
+     when: << pipeline.parameters.run-module-a >>
+     jobs:
+       - module-a
    build_and_test:
+     when: << pipeline.parameters.run-module-b >>
      jobs:
        - build
        - test:

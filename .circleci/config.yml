@@ -24,7 +24,7 @@ jobs:
 
   build:
     docker:
-      - image: 'cimg/ruby:2.7-node'
+      - image: 'cimg/ruby:2.7.4-node'
     steps:
       - checkout
       - run: sudo apt-get update
@@ -36,7 +36,7 @@ jobs:
    
   test:
     docker:
-      - image: 'cimg/ruby:2.7-node'
+      - image: 'cimg/ruby:2.7.4-node'
       - environment:
           POSTGRES_DB: rails_blog_test
           POSTGRES_PASSWORD: ''
@@ -72,7 +72,7 @@ jobs:
 
   deploy:
     docker:
-      - image: 'cimg/ruby:2.7-node'
+      - image: 'cimg/ruby:2.7.4-node'
     steps:
       - checkout
       - run: sudo apt-get update
@@ -90,7 +90,7 @@ orbs:
 executors:
   ruby:
     docker:
-      - image: 'cimg/ruby:2.7-node'
+      - image: 'cimg/ruby:2.7.4-node'
 
 workflows:
   pre:

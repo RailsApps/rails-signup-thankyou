@@ -16,11 +16,17 @@ parameters:
 jobs:
   module-a:
     docker:
-      - image: alpine
+      - image: 'circleci/buildpack-deps:stretch'
+    environment:
+      IMAGE_NAME: brianoh1979/circleci-demo-docker3
     steps:
       - checkout
-      - run: "echo 'Hello from module A!'"
-      - run: cat module-a/README.md
+      - setup_remote_docker
+      - docker/check
+      - docker/build:
+          image: brianoh1979/circleci-demo-docker3
+      - docker/push:
+          image: brianoh1979/circleci-demo-docker3
 
   build:
     docker:
@@ -87,6 +93,7 @@ orbs:
   node: circleci/node@2
   heroku: circleci/heroku@1.2.6
   cypress: cypress-io/cypress@1.29.0
+  docker: circleci/docker@2.0.1
 executors:
   ruby:
     docker:

@@ -33,7 +33,7 @@ jobs:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
       - checkout
-      - run: sudo apt-get update2
+      - run: sudo apt-get update
       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
       - ruby/install-deps
       - node/install-packages:

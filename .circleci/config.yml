@@ -21,7 +21,7 @@ jobs:
       IMAGE_NAME: brianoh1979/circleci-demo-docker3
     steps:
       - checkout
-      - echo "Hello World"
+      - run: echo "hello world" # run the `echo` command
 #      - setup_remote_docker
 #      - docker/check
 #      - docker/build:

@@ -15,8 +15,8 @@ parameters:
 
 jobs:
   module-a:
-    docker:
-      - image: 'circleci/buildpack-deps:stretch'
+    machine: true
+    resource_class: brianoh1979/brian-runner-vm
     environment:
       IMAGE_NAME: brianoh1979/circleci-demo-docker3
     steps:

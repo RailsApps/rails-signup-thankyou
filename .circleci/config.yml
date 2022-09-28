@@ -21,12 +21,13 @@ jobs:
       IMAGE_NAME: brianoh1979/circleci-demo-docker3
     steps:
       - checkout
-      - setup_remote_docker
-      - docker/check
-      - docker/build:
-          image: brianoh1979/circleci-demo-docker3
-      - docker/push:
-          image: brianoh1979/circleci-demo-docker3
+      - echo "Hello World"
+#      - setup_remote_docker
+#      - docker/check
+#      - docker/build:
+#          image: brianoh1979/circleci-demo-docker3
+#      - docker/push:
+#          image: brianoh1979/circleci-demo-docker3
 
   build:
     docker:

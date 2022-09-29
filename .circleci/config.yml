@@ -15,19 +15,16 @@ parameters:
 
 jobs:
   module-a:
-    machine: true
-    resource_class: brianoh1979/brian-runner-vm
-    environment:
-      IMAGE_NAME: brianoh1979/circleci-demo-docker3
+    docker:
+      - image: 'cimg/ruby:2.7.4-node'
     steps:
       - checkout
-      - run: echo "hello world" # run the `echo` command
-#      - setup_remote_docker
-#      - docker/check
-#      - docker/build:
-#          image: brianoh1979/circleci-demo-docker3
-#      - docker/push:
-#          image: brianoh1979/circleci-demo-docker3
+      - setup_remote_docker
+      - docker/check
+      - docker/build:
+          image: brianoh1979/circleci-demo-docker3
+      - docker/push:
+          image: brianoh1979/circleci-demo-docker3
 
   build:
     docker:

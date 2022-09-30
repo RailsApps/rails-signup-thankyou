@@ -16,7 +16,7 @@ parameters:
 jobs:
   module-a:
     docker:
-      - image: 'brianoh1979/circleci-demo-docker3'
+      - image: 'cimg/ruby:2.7.4-node'
     steps:
       - checkout
       - setup_remote_docker

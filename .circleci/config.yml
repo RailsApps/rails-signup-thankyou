@@ -20,11 +20,20 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+          docker_layer_caching: true
       - docker/check
       - docker/build:
           image: brianoh1979/circleci-demo-docker3
       - docker/push:
           image: brianoh1979/circleci-demo-docker3
+      - snyk/scan:
+           docker-image-name: 'brianoh1979/circleci-demo-docker3:latest'
+           fail-on-issues: false
+           monitor-on-build: true
+           project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
+           severity-threshold: high
+           target-file: Dockerfile
+           token-variable: SNYK_TOKEN
 
   build:
     docker:
@@ -92,6 +101,8 @@ orbs:
   heroku: circleci/heroku@1.2.6
   cypress: cypress-io/cypress@1.29.0
   docker: circleci/docker@2.1.4
+  snyk: snyk/snyk@1.2.3
+
 executors:
   ruby:
     docker:

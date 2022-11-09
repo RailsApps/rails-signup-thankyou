@@ -19,7 +19,7 @@ jobs:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
           docker_layer_caching: true
       - docker/check
       - docker/build:

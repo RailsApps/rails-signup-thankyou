@@ -19,17 +19,17 @@ jobs:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - setup_remote_docker
+          docker_layer_caching:true
       - docker/check
       - docker/build:
           image: brianoh1979/circleci-demo-docker3
       - docker/push:
           image: brianoh1979/circleci-demo-docker3
       - snyk/scan:
-           docker-image-name: 'brianoh1979/circleci-demo-docker3:latest'
+           docker-image-name: '$IMAGE_NAME:latest'
            fail-on-issues: false
-           monitor-on-build: false
+           monitor-on-build: true
            project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
            severity-threshold: high
            target-file: Dockerfile
@@ -92,8 +92,7 @@ jobs:
       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
       - ruby/install-deps
       - heroku/install
-      - heroku/deploy-via-git:
-          force: true
+      - heroku/deploy-via-git
 
 orbs:
   path-filtering: circleci/path-filtering@0.1.1
@@ -116,7 +115,7 @@ workflows:
     jobs:
       - path-filtering/filter:
           # Compare files on main
-          base-revision: main2
+          base-revision: main
           # Config for continuation; herein we reuse this config itself
           config-path: .circleci/config.yml
           # 3-column space-separated table for mapping; `path-to-test parameter-to-set value-for-parameter` for each row
@@ -157,6 +156,8 @@ workflows:
           filters:
              branches:
                only:
-                 - main2  
+                 - main  
 
          
+
+# VS Code Extension Version: 1.0.0

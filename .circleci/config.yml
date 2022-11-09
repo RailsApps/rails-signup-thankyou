@@ -29,7 +29,7 @@ jobs:
       - snyk/scan:
            docker-image-name: '$IMAGE_NAME:latest'
            fail-on-issues: false
-           monitor-on-build: true
+           monitor-on-build: false
            project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
            severity-threshold: high
            target-file: Dockerfile

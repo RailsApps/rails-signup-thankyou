@@ -97,6 +97,7 @@ jobs:
     executor: with-chrome
     steps:
       - checkout
+      - cypress install
       - run:
           name: Run Cypress Tests
           command: |

@@ -82,7 +82,6 @@ jobs:
       - ruby/rspec-test
       - ruby/rubocop-check
 
-
   deploy:
     docker:
       - image: 'cimg/ruby:2.7.4-node'
@@ -93,6 +92,25 @@ jobs:
       - ruby/install-deps
       - heroku/install
       - heroku/deploy-via-git
+  
+  e2e:
+    executor: with-chrome
+    steps:
+      - checkout
+      - run:
+          name: Run Cypress Tests
+          command: |
+            npx cypress run \
+            --config baseUrl=https://rails-signup-thankyou-boh.herokuapp.com/ \
+            --browser firefox \
+            --reporter junit \
+            --reporter-options "mochaFile=results/my-test-output-[hash].xml"
+      - store_test_results:
+          path: results
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
 
 orbs:
   path-filtering: circleci/path-filtering@0.1.1
@@ -108,14 +126,18 @@ executors:
   ruby:
     docker:
       - image: 'cimg/ruby:2.7.4-node'
+  with-chrome:
+    docker:
+      - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
 
+  
 workflows:
   pre:
     when: << pipeline.parameters.run-setup >>
     jobs:
       - path-filtering/filter:
           # Compare files on main
-          base-revision: main2
+          base-revision: cypress
           # Config for continuation; herein we reuse this config itself
           config-path: .circleci/config.yml
           # 3-column space-separated table for mapping; `path-to-test parameter-to-set value-for-parameter` for each row
@@ -134,30 +156,27 @@ workflows:
       - test:
           requires:
             - build
-      - cypress/install:
-          cache-key: 'cache2-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}'
-      - cypress/run:
-          build: bundle install && sudo apt-get update && sudo apt-get install xvfb libgtk-3-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 --fix-missing
-          executor: ruby 
-          start: cd ~/project && rails server
-          wait-on: http://localhost:3000
-          cache-key: 'cache2-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}'
-          requires:
-            - cypress/install
-          attach-workspace: yes
+ #     - cypress/install:
+ #         cache-key: 'cache2-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}'
+ #     - cypress/run:
+ #         build: bundle install && sudo apt-get update && sudo apt-get install xvfb libgtk-3-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 --fix-missing
+ #         executor: ruby 
+ #         start: cd ~/project && rails server
+ #         wait-on: http://localhost:3000
+ #         cache-key: 'cache2-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}'
+ #         requires:
+ #           - cypress/install
+ #         attach-workspace: yes
       - hold:
          type: approval
          requires:
            - test
-           - cypress/run
       - deploy:
           requires:
             - hold
-          filters:
-             branches:
-               only:
-                 - main2  
-
+      - e2e:
+          requires:
+            - deploy
          
 
 # VS Code Extension Version: 1.0.0

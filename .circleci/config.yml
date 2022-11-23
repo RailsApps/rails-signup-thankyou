@@ -153,10 +153,10 @@ workflows:
   build_and_test:
     when: << pipeline.parameters.run-module-b >>
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+ #     - build
+ #     - test:
+ #         requires:
+ #           - build
  #     - cypress/install:
  #         cache-key: 'cache2-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}'
  #     - cypress/run:
@@ -168,16 +168,14 @@ workflows:
  #         requires:
  #           - cypress/install
  #         attach-workspace: yes
-      - hold:
-         type: approval
-         requires:
-           - test
-      - deploy:
-          requires:
-            - hold
-      - e2e:
-          requires:
-            - deploy
+ #     - hold:
+ #        type: approval
+ #        requires:
+ #          - test
+ #     - deploy:
+ #         requires:
+ #           - hold
+      - e2e
          
 
 # VS Code Extension Version: 1.0.0

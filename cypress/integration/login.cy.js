@@ -8,7 +8,7 @@ Cypress.Commands.add('login', (username, password) => {
   cy.visit('https://rails-signup-thankyou-boh.herokuapp.com/users/sign_in')
   cy.get('#user_email').type(username)
   cy.get('#user_password').type(password)
-  cy.get('.button right').contains('Sign In').click()
+  cy.get('button:contains("Sign In")').click()
   cy.url().should('contain', '/thankyou')
 })
 

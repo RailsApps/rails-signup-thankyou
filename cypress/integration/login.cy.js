@@ -27,7 +27,7 @@ describe('User login  page', () => {
   })
 
   it('allows you to sign out again', () => {
-    cy.get('a[href="/users/sign_out"]')..click()
+    cy.get('a[href="/users/sign_out"]').click()
   })
 })
 

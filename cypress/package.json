@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/cypress-io/cypress/issues"
   },
-  "bundleDependencies": false,
+  "bundleDependencies": [],
   "dependencies": {
     "@cypress/listr-verbose-renderer": "0.4.1",
     "@cypress/xvfb": "1.2.4",
@@ -104,5 +104,8 @@
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";"
   },
   "types": "types",
-  "version": "3.4.1"
+  "version": "3.4.1",
+  "devDependencies": {
+    "cy-verify-downloads": "^0.1.11"
+  }
 }

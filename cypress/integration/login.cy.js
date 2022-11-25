@@ -23,6 +23,7 @@ describe('User login  page', () => {
 
   it('allows PDF to be downloaded after login', function() {
     cy.get('a[href="/products/product.pdf"]').click()
+    cy.verifyDownload('product.pdf');
   })
   
   it('allows you to sign out again', () => {

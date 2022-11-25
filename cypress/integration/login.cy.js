@@ -23,11 +23,11 @@ describe('User login  page', () => {
   })
   
   it('allows PDF to be downloaded after login', function() {
-  cy.get('a[href="/products/product.pdf"]').should('be.visible').click()
+  cy.get('a[href="/products/product.pdf"]').click()
   })
 
   it('allows you to sign out again', () => {
-    cy.get('a[href="/users/sign_out"]').should('be.visible').click()
+    cy.get('a[href="/users/sign_out"]')..click()
   })
 })
 

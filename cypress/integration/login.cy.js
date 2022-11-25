@@ -35,10 +35,6 @@ describe('Signin is unsuccessful with the below credentials', function() {
   it('should actually be accessible', () => {
     cy.visit('https://rails-signup-thankyou-boh.herokuapp.com/users/sign_in')
   })
-
-  it('fails with alert banner', function() {
-    cy.get('#alertBanner').contains('Invalid Email or password.')
-  })
   
 })
 

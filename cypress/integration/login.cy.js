@@ -22,10 +22,6 @@ describe('User login  page', () => {
     cy.visit('https://rails-signup-thankyou-boh.herokuapp.com/users/sign_in')
   })
   
-  it('allows PDF to be downloaded after login', function() {
-  cy.get('a[href="/products/product.pdf"]').click()
-  })
-
   it('allows you to sign out again', () => {
     cy.get('a[href="/users/sign_out"]').click()
   })

@@ -1,7 +1,7 @@
 {
   "integrationFolder": "cypress/integration",
   "pluginsFile": false,
-  "supportFile": false,
+  "supportFile": "cypress/support/index.js",
   "pageLoadTimeout": 180000,
   "reporter": "junit",
   "reporterOptions": {

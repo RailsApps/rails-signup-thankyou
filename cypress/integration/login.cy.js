@@ -9,7 +9,6 @@ Cypress.Commands.add('login', (username, password) => {
   cy.get('#user_email').type(username)
   cy.get('#user_password').type(password)
   cy.get('#new_user > input.button.right').click()
-  cy.url().should('contain', '/thankyou')
 })
 
 describe('User login  page', () => {

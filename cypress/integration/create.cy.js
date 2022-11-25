@@ -1,7 +1,6 @@
 describe('User can navigate to create account screen', function() {
     it('from url', function() {
       cy.visit('https://rails-signup-thankyou-boh.herokuapp.com/users/sign_up')
-      cy.get('#signup-title').contains('Roll on up!!')
     })
 })
     

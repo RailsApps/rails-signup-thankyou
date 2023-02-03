@@ -125,7 +125,8 @@ orbs:
   docker: circleci/docker@2.1.4
   snyk: snyk/snyk@1.2.3
   slack: circleci/slack@4.10.1
-  npxcypress: brianoh1979/npxcypress@0.0.1
+  npxcypress: brianoh1979/npxcypress@0.0.2
+#  test-2: kelvinkfli/test-2@2.0.1
 
 executors:
   ruby:
@@ -170,7 +171,7 @@ workflows:
             - hold
       - npxcypress/e2e:
           requires:
-            - hold
+            - deploy
  #     - e2e:
  #         requires:
  #           - hold

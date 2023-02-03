@@ -27,7 +27,7 @@ jobs:
       - docker/push:
           image: brianoh1979/circleci-demo-docker3
       - snyk/scan:
-           docker-image-name: '$IMAGE_NAME:latest'
+           docker-image-name: '$IMAGE_NAME:$CIRCLE_SHA1'
            fail-on-issues: false
            monitor-on-build: false
            project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'

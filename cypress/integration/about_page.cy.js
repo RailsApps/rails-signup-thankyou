@@ -1,6 +1,6 @@
 it('successfully loads', function() {
   cy.request({
-      url: 'https://rails-signup-thankyou-boh.herokuapp.com/pages/about',
+      url: 'https://https://rails-signup-boh-heroku-22.herokuapp.com/pages/about',
       failOnStatusCode: false
   })
 })

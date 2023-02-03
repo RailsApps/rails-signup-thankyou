@@ -120,7 +120,7 @@ orbs:
   heroku: circleci/heroku@1.2.6
   cypress: cypress-io/cypress@1.29.0
   docker: circleci/docker@2.1.4
-  snyk: snyk/snyk@1.2.3
+#  snyk: snyk/snyk@1.2.3
   slack: circleci/slack@4.10.1
 
 executors:

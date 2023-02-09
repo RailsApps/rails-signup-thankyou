@@ -21,6 +21,7 @@ jobs:
        IMAGE_NAME: brianoh1979/circleci-demo-docker4
     steps:
       - checkout
+      - blockssh/checksession     
       - setup_remote_docker:
           docker_layer_caching: true
       - docker/check
@@ -43,6 +44,7 @@ jobs:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
       - checkout
+      - blockssh/checksession
       - run: sudo apt-get update
       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
       - ruby/install-deps
@@ -126,6 +128,8 @@ orbs:
   snyk: snyk/snyk@1.2.3
   slack: circleci/slack@4.10.1
   npxcypress: brianoh1979/npxcypress@0.0.2
+  cli: circleci/circleci-cli@0.1.9
+  blockssh: brianoh1979/blockssh@0.0.1
 #  test-2: kelvinkfli/test-2@2.0.1
 
 executors:
@@ -135,7 +139,9 @@ executors:
   with-chrome:
     docker:
       - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
-
+  base:
+    docker:
+      - image: cibuilds/hugo:latest
   
 workflows:
   pre:

@@ -1,6 +1,6 @@
 describe('User can navigate to create account screen', function() {
     it('from url', function() {
-      cy.visit('https://https://rails-signup-boh-heroku-20.herokuapp.com/users/sign_up')
+      cy.visit('https://rails-signup-boh-heroku-20.herokuapp.com/users/sign_up')
     })
 })
     

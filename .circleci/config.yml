@@ -28,14 +28,14 @@ jobs:
       - docker/build:
           cache_from: '$IMAGE_NAME:$CIRCLE_SHA1'
           image: brianoh1979/circleci-demo-docker4
-      - snyk/scan:
-           docker-image-name: '$IMAGE_NAME:latest'
-           fail-on-issues: false
-           monitor-on-build: false
-           project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
-           severity-threshold: high
-           target-file: Dockerfile
-           token-variable: SNYK_TOKEN
+#      - snyk/scan:
+#           docker-image-name: '$IMAGE_NAME:latest'
+#           fail-on-issues: false
+#           monitor-on-build: false
+#           project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
+#           severity-threshold: high
+#           target-file: Dockerfile
+#           token-variable: SNYK_TOKEN
       - docker/push:
           image: brianoh1979/circleci-demo-docker4
 

@@ -1,11 +1,11 @@
 describe('User can navigate to create account screen', function() {
     it('from url', function() {
-      cy.visit('https://https://rails-signup-boh-heroku-22.herokuapp.com/users/sign_up')
+      cy.visit('https://https://rails-signup-boh-heroku-20.herokuapp.com/users/sign_up')
     })
 })
     
 Cypress.Commands.add('login', (name, username, password, confirmation) => {
-  cy.visit('https://rails-signup-boh-heroku-22.herokuapp.com/users/sign_up')
+  cy.visit('https://rails-signup-boh-heroku-20.herokuapp.com/users/sign_up')
   cy.get('#user_name').type(name)
   cy.get('#user_email').type(username)
   cy.get('#user_password').type(password)
@@ -21,7 +21,7 @@ describe('Signup is unsuccessful when incorrectly formatted e-mail address is pr
   })
 
   it('should actually be accessible', () => {
-    cy.visit('https://rails-signup-boh-heroku-22.herokuapp.com/users/sign_up')
+    cy.visit('https://rails-signup-boh-heroku-20.herokuapp.com/users/sign_up')
   })
 
 })
@@ -33,7 +33,7 @@ describe('Signup is successful with these credentials', function() {
   })
 
   it('should actually be accessible', () => {
-    cy.visit('https://rails-signup-boh-heroku-22.herokuapp.com/users/sign_up')
+    cy.visit('https://rails-signup-boh-heroku-20.herokuapp.com/users/sign_up')
   })
 
 })

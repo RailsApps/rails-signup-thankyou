@@ -123,11 +123,11 @@ orbs:
   heroku: circleci/heroku@1.2.6
   cypress: cypress-io/cypress@1.29.0
   docker: circleci/docker@2.1.4
-  snyk: snyk/snyk@1.2.3
+#  snyk: snyk/snyk@1.2.3
   slack: circleci/slack@4.10.1
   npxcypress: brianoh1979/npxcypress@0.0.2
   cli: circleci/circleci-cli@0.1.9
-#  blockssh: brianoh1979/blockssh@0.0.1
+  blockssh: brianoh1979/blockssh@0.0.1
 #  test-2: kelvinkfli/test-2@2.0.1
 
 executors:

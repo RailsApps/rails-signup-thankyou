@@ -17,8 +17,8 @@ jobs:
   module-a:
     docker:
       - image: 'cimg/ruby:2.7.4-node'
-    environment:
-       IMAGE_NAME: brianoh1979/circleci-demo-docker4
+#    environment:
+#       IMAGE_NAME: brianoh1979/circleci-demo-docker4
     steps:
       - checkout
       - blockssh/checksession     
@@ -26,10 +26,10 @@ jobs:
           docker_layer_caching: true
       - docker/check
       - docker/build:
-          cache_from: '$IMAGE_NAME:$CIRCLE_SHA1'
+          cache_from: '$DOCKER_IMAGE_NAME:$CIRCLE_SHA1'
           image: brianoh1979/circleci-demo-docker4
 #      - snyk/scan:
-#           docker-image-name: '$IMAGE_NAME:latest'
+#           docker-image-name: '$DOCKER_IMAGE_NAME:latest'
 #           fail-on-issues: false
 #           monitor-on-build: false
 #           project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
@@ -160,7 +160,9 @@ workflows:
   module-a:
     when: << pipeline.parameters.run-module-a >>
     jobs:
-      - module-a
+      - module-a:
+         context:
+           - Brian-Context2
   build_and_test:
     when: << pipeline.parameters.run-module-b >>
     jobs:

@@ -28,14 +28,14 @@ jobs:
       - docker/build:
           cache_from: '$DOCKER_IMAGE_NAME:$CIRCLE_SHA1'
           image: brianoh1979/circleci-demo-docker4
-#      - snyk/scan:
-#           docker-image-name: '$DOCKER_IMAGE_NAME:latest'
-#           fail-on-issues: false
-#           monitor-on-build: false
-#           project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
-#           severity-threshold: high
-#           target-file: Dockerfile
-#           token-variable: SNYK_TOKEN
+      - snyk/scan:
+           docker-image-name: '$DOCKER_IMAGE_NAME:latest'
+           fail-on-issues: false
+           monitor-on-build: false
+           project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
+           severity-threshold: high
+           target-file: Dockerfile
+           token-variable: SNYK_TOKEN
       - docker/push:
           image: brianoh1979/circleci-demo-docker4
 
@@ -43,8 +43,8 @@ jobs:
     docker:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
-      - checkout
 #      - blockssh/checksession
+      - checkout
       - run: sudo apt-get update
       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
       - ruby/install-deps
@@ -139,9 +139,6 @@ executors:
   with-chrome:
     docker:
       - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
-  base:
-    docker:
-      - image: cibuilds/hugo:latest
   
 workflows:
   pre:

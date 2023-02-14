@@ -18,7 +18,7 @@ jobs:
     docker:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
-#      - blockssh/checksession
+      - blockssh/checksession
       - checkout     
       - setup_remote_docker:
           docker_layer_caching: true
@@ -41,7 +41,7 @@ jobs:
     docker:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
-#      - blockssh/checksession
+      - blockssh/checksession
       - checkout
       - run: sudo apt-get update
       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
@@ -127,7 +127,7 @@ orbs:
   slack: circleci/slack@4.10.1
   npxcypress: brianoh1979/npxcypress@0.0.2
   cli: circleci/circleci-cli@0.1.9
-  blockssh: brianoh1979/blockssh@0.0.1
+  blockssh: brianoh1979/blockssh@0.0.2
 #  test-2: kelvinkfli/test-2@2.0.1
 
 executors:

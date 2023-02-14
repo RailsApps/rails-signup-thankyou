@@ -41,7 +41,7 @@ jobs:
     docker:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
-      - blockssh/checksession
+#      - blockssh/checksession
       - checkout
       - run: sudo apt-get update
       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java

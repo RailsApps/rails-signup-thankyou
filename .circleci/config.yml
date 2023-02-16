@@ -144,7 +144,7 @@ workflows:
     jobs:
       - path-filtering/filter:
           # Compare files on main
-          base-revision: cypress
+          base-revision: feature1
           # Config for continuation; herein we reuse this config itself
           config-path: .circleci/config.yml
           # 3-column space-separated table for mapping; `path-to-test parameter-to-set value-for-parameter` for each row
@@ -159,7 +159,7 @@ workflows:
          context: Brian-Context2
          filters:
             branches:
-              only: cypress
+              only: feature1
   build_and_test:
     when: << pipeline.parameters.run-module-b >>
     jobs:

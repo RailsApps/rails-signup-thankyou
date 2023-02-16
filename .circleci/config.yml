@@ -18,7 +18,7 @@ jobs:
     docker:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
-#      - blockssh/checksession
+      - blockssh/checksession
       - checkout     
       - setup_remote_docker:
           docker_layer_caching: true
@@ -26,14 +26,14 @@ jobs:
       - docker/build:
           cache_from: '$DOCKER_IMAGE_NAME:$CIRCLE_SHA1'
           image: brianoh1979/circleci-demo-docker4
- #     - snyk/scan:
- #          docker-image-name: '$DOCKER_IMAGE_NAME:latest'
- #          fail-on-issues: false
- #          monitor-on-build: false
- #          project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
- #          severity-threshold: high
- #          target-file: Dockerfile
- #          token-variable: SNYK_TOKEN
+      - snyk/scan:
+           docker-image-name: '$DOCKER_IMAGE_NAME:latest'
+           fail-on-issues: false
+           monitor-on-build: false
+           project: '${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BRANCH}-container'
+           severity-threshold: high
+           target-file: Dockerfile
+           token-variable: SNYK_TOKEN
       - docker/push:
           image: brianoh1979/circleci-demo-docker4
 
@@ -41,7 +41,7 @@ jobs:
     docker:
       - image: 'cimg/ruby:2.7.4-node'
     steps:
- #     - blockssh/checksession
+      - blockssh/checksession
       - checkout
       - run: sudo apt-get update
       - run: bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
@@ -123,11 +123,11 @@ orbs:
   heroku: circleci/heroku@1.2.6
   cypress: cypress-io/cypress@1.29.0
   docker: circleci/docker@2.1.4
-#  snyk: snyk/snyk@1.2.3
+  snyk: snyk/snyk@1.2.3
   slack: circleci/slack@4.10.1
   npxcypress: brianoh1979/npxcypress@0.0.2
   cli: circleci/circleci-cli@0.1.9
-#  blockssh: brianoh1979/blockssh@0.0.2
+  blockssh: brianoh1979/blockssh@0.0.2
 #  test-2: kelvinkfli/test-2@2.0.1
 
 executors:
@@ -156,8 +156,10 @@ workflows:
     when: << pipeline.parameters.run-module-a >>
     jobs:
       - module-a:
-         context:
-           - Brian-Context2
+         context: Brian-Context2
+         filters:
+            branches:
+              only: cypress
   build_and_test:
     when: << pipeline.parameters.run-module-b >>
     jobs:
